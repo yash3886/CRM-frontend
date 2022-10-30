@@ -5,27 +5,21 @@ import { AddTicketForm } from "../../Components/add-ticket-form/AddTicketForm.co
 
 const initialFrmDt = {
     subject: "",
-    issueDate: null,
+    issueDate: "",
     detail: "",
 };
 export const AddTicket = () => {
 
     const [frmData, setfrmData] = useState(initialFrmDt);
+    useEffect(() => {}, [frmData])
     const handleOnChange = (e) => {
         const {name, value} = e.target;
 
-        // useEffect(() => {
-        //     effect 
-        //     return () => {
-        //         cleanup
-        //     }
-        // }, [input])
 
         setfrmData({
-            ...initialFrmDt, 
-            [name]:value
-
-        })
+            ...frmData, 
+            [name]:value,
+        });
     };
 
     const handleOnSubmit = e => {

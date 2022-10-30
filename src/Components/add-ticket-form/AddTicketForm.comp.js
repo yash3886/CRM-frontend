@@ -1,12 +1,15 @@
 import React from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import PropTypes from 'prop-types';
-
+import "./add-ticket-form.style.css";
 
 export const AddTicketForm = ({handleOnChange, handleOnSubmit, frmDt}) => {
     console.log(frmDt);
     return (
+        <div className="mt-3 add-new-ticket">
         <div className="p-5 mb-5 bg-light rounded-2">
+            <h3 className="text-center text-info">Add New Ticket</h3>
+            <hr />
             <Form autoComplete="off" onSubmit={handleOnSubmit}>
                     <Form.Group as={Row}>
                         <Form.Label column sm={3}>Subject</Form.Label>
@@ -47,6 +50,7 @@ export const AddTicketForm = ({handleOnChange, handleOnSubmit, frmDt}) => {
                     <br />
                     <Button type="submit">Login</Button>
                 </Form>
+                </div>
         </div>
     )
 }
