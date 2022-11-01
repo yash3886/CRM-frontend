@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import './Entry.style.css';
-import { LoginForm } from "../../Components/Login/Login.comp";
-import { ResetPassword } from "../../Components/Password-Reset/PasswordReset.comp";
+import { LoginForm } from "../../Components/login/login.comp";
+import { ResetPassword } from "../../Components/password-reset/passwordReset.comp";
 
 
 export const Entry = () =>{
@@ -9,7 +9,7 @@ export const Entry = () =>{
     const [password, setPassword] = useState("");
     const [FrmLoad, setFrmLoad] = useState("login");
     
-    const handleOnChange = e => {
+    const handleOnChange = (e) => {
         const {name, value} = e.target;
 
         switch(name){
@@ -49,8 +49,9 @@ export const Entry = () =>{
     const Formswitcher = (formType) => {
         setFrmLoad(formType)
     }
-    return  <div className="entry-page">
-        <div className="p-5 mb-5 bg-light rounded-2">
+    return(  
+    <div className="entry-page bg-info">
+        <div className="bg-light p-5 rounded-lg m-3">
             <div className="form-box">
                 {FrmLoad === 'login' && <LoginForm 
                     handleOnChange={handleOnChange}
@@ -68,4 +69,5 @@ export const Entry = () =>{
             </div>
         </div>
     </div>
+    )
 }

@@ -3,13 +3,15 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import PropTypes from 'prop-types';
 import "./add-ticket-form.style.css";
 
-export const AddTicketForm = ({handleOnChange, handleOnSubmit, frmDt}) => {
-    console.log(frmDt);
-    return (
+
+export const AddTicketForm = ({handleOnChange, handleOnSubmit, frmDt, frmDataError}) => {
+  console.log(frmDt);  
+  return (
         <div className="mt-3 add-new-ticket">
         <div className="p-5 mb-5 bg-light rounded-2">
-            <h3 className="text-center text-info">Add New Ticket</h3>
+            <h1 className="text-center text-info">Add New Ticket</h1>
             <hr />
+            <br />
             <Form autoComplete="off" onSubmit={handleOnSubmit}>
                     <Form.Group as={Row}>
                         <Form.Label column sm={3}>Subject</Form.Label>
@@ -18,10 +20,15 @@ export const AddTicketForm = ({handleOnChange, handleOnSubmit, frmDt}) => {
                             type="text"
                             name="subject"
                             value={frmDt.subject}
+                            // minLength="3"
+                            maxLength={100}
                             onChange={handleOnChange}
                             placeholder="Subject"
                             required
                         /></Col>
+                        <Form.Text className="text-danger">
+                            {frmDataError.subject && "Subject is required!"}
+                        </Form.Text>
                     </Form.Group>
                     <br></br>
                     <Form.Group as={Row}>
@@ -33,7 +40,8 @@ export const AddTicketForm = ({handleOnChange, handleOnSubmit, frmDt}) => {
                             value={frmDt.issuedate}
                             onChange={handleOnChange}
                             required
-                        /></Col>
+                        />
+                        </Col>
                     </Form.Group>
                     <br></br>
                     <Form.Group>
@@ -44,11 +52,14 @@ export const AddTicketForm = ({handleOnChange, handleOnSubmit, frmDt}) => {
                             name="detail"
                             value={frmDt.detail}
                             onChange={handleOnChange}
+                            placeholder="Write here.."
                             required
                         />
                     </Form.Group>
                     <br />
-                    <Button type="submit">Login</Button>
+                    <div className="col-md-12 text-center">
+                        <Button type="submit" variant="info">Login</Button>
+                    </div>
                 </Form>
                 </div>
         </div>
@@ -58,5 +69,6 @@ export const AddTicketForm = ({handleOnChange, handleOnSubmit, frmDt}) => {
 AddTicketForm.propTypes = {
     handleOnSubmit: PropTypes.func.isRequired,
     handleOnChange: PropTypes.func.isRequired, 
+    frmDataError: PropTypes.object.isRequired,
     frmDt: PropTypes.object.isRequired,
 }

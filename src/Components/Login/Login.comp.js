@@ -36,7 +36,7 @@ export const LoginForm = ({handleOnChange, handleOnSubmit, Formswitcher,  email,
                     <br />
                     <Button type="submit">Login</Button>
                 </Form>
-                <hr></hr>
+                <hr />
                 </Col>
             </Row>
 

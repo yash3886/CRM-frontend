@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { TicketTable } from "../../Components/ticket-table/TicketTable.comp";
+import { TicketTable } from "../../Components/ticket-table/ticketTable.comp";
 import tickets from '../../assets/data/dummy-tickets.json';
-import { PageBreadcrumb } from "../../Components/Breadcrumb/breadcrumb.comp";
+import { PageBreadcrumb } from "../../Components/breadcrumb/breadcrumb.comp";
 
 export const Dashboard = () => {
     return (
@@ -14,7 +14,7 @@ export const Dashboard = () => {
                 </Col>
             </Row>
             <Row>
-                <Col className="text-center mt-5 mb-2">
+                <Col className="text-center mt-5 mb-3">
                     <Button variant="info" 
                     style={{'fontSize':'2rem', padding:"10px 30px"}}>
                         Add New Ticket

@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { PageBreadcrumb } from "../../Components/Breadcrumb/breadcrumb.comp";
-import { AddTicketForm } from "../../Components/add-ticket-form/AddTicketForm.comp";
+import { PageBreadcrumb } from "../../Components/breadcrumb/breadcrumb.comp";
+import { AddTicketForm } from "../../Components/add-ticket-form/addTicketForm.comp";
+import { shortText } from "../../utils/validation";
 
 const initialFrmDt = {
     subject: "",
-    issueDate: "",
+    issuedate: "",
     detail: "",
+};
+
+const initialFrmError = {
+    subject: false,
+    issuedate: false,
+    detail: false,
 };
 export const AddTicket = () => {
 
     const [frmData, setfrmData] = useState(initialFrmDt);
-    useEffect(() => {}, [frmData])
+    const [frmDataError, setfrmDataError] = useState(initialFrmError);
+    useEffect(() => {}, [frmData, frmDataError])
+    
     const handleOnChange = (e) => {
         const {name, value} = e.target;
 
@@ -22,9 +31,17 @@ export const AddTicket = () => {
         });
     };
 
-    const handleOnSubmit = e => {
+    const handleOnSubmit = async(e) => {
         e.preventDefault();
-        console.log('Form submit request recieved');
+
+        setfrmDataError(initialFrmError);
+        const isSubjectValid = await shortText(frmData.subject);
+
+        setfrmDataError({
+            ...initialFrmError,
+            subject: !isSubjectValid,
+        })
+        console.log('Form submit request received');
     }
 
     return (
@@ -42,6 +59,7 @@ export const AddTicket = () => {
                 handleOnChange={handleOnChange}
                 handleOnSubmit={handleOnSubmit}
                 frmDt = {frmData}
+                frmDataError={frmDataError}
                 />
                 </Col>
             </Row>
